@@ -1,0 +1,1 @@
+This is a beginner project that I am working on get more familiar with the Pandas library for Python. I wanted to take DNA/RNA concepts that I learned from my Intro Biology class and simulate different biological processes such as transcription, translations, and mutations.
