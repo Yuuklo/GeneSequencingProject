@@ -1,7 +1,7 @@
 import pandas as pd
 import seaborn as sb
 import random
-import gene_tools
+import gene_tools as gt
 
 # Generates a random sequence that is n nucleotide units long
 def generate_random_sequence(sequence_length):
@@ -16,16 +16,16 @@ def create_dictionary(number_of_sequences, sequence_length):
 		sequence = generate_random_sequence(sequence_length)
 		dna_chart.append({
 			"ID" : f"Seq_{i+1}", "SEQUENCE" : sequence, 
-		    "COMPLEMENT (DNA)" : gene_tools.to_complement(sequence), 
-		    "TRANSCRIBED (mRNA)" : gene_tools.transcribe(sequence), 
-		    "COMPLEMENT (mRNA)" : gene_tools.transcribe(gene_tools.to_complement(sequence)),
-		    "AMINO ACID SEQUENCE" : gene_tools.translate(gene_tools.transcribe(sequence))
+		    "COMPLEMENT (DNA)" : gt.to_complement(sequence), 
+		    "TRANSCRIBED (mRNA)" : gt.transcribe(sequence), 
+		    "COMPLEMENT (mRNA)" : gt.transcribe(gt.to_complement(sequence)),
+		    "AMINO ACID SEQUENCE" : gt.find_coding_regions(gt.translate(gt.transcribe(sequence)))
 		    })
 	return dna_chart
 
 # Program Start
-data = create_dictionary(100, 20)
-df = pd.DataFrame(data).head(1)
+data = create_dictionary(100, 30)
+df = pd.DataFrame(data)
 
-print(df)
+print(df.head(50))
 

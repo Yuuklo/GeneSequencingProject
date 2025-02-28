@@ -28,20 +28,17 @@ def to_three_letter_acids(amino_acids):
 	amino_acid_sequence = []
 	for acid in amino_acids:
 		if acid in amino_chart:
-			if acid == '*':
-				pass # STOP Codon does not get printed
-			else:
-				amino_acid_sequence.append(amino_chart[acid])
+			amino_acid_sequence.append(amino_chart[acid])
 	return '-'.join(amino_acid_sequence)
 
 
 
 # Reads a translated amino acid sequence and trims off the non-coding proteins
 def find_coding_regions(translation):
-	# The translate() function built inside the biopython function denotes the letter 'M' as a START CODON and an asterisk '*' as the STOP CODON.
-	# Therefore, finding the coding regions of a translated sequence will involve trimming based off the indices of M and *.
-	coding_regions = [] 
-	...
+	if 'Met' in translation and 'STOP' in translation and translation.index('Met') < translation.index('STOP'):
+		return translation[translation.index('Met') : translation.index('STOP')-1]
+	else:
+		return "[NON-CODING]"
 
 # Simulate different types of mutations 
 def mutate():
